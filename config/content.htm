@@ -164,7 +164,44 @@
 </li>
 </ul>
 <h2>W10</h2>
-<h2>W14</h2>
+<p>Q1.<a href="https://cyberbotics.com/">Webots</a><span><span> </span>是什麼？</span></p>
+<p><span>A1.webots是一個常用於機器人與汽車自動駕駛的模擬軟體，他主要是使用網格體去模擬外型、碰撞等，也有camera可以做動作檢查或是影像識別，也有motor、senser，可以盡量真實還原模擬。</span></p>
+<p><span>Q2.有什麼特點？</span></p>
+<p><span>A2.webots相較於nvidia的isaac sim僅需CPU即可工作，通用性高且成本低，適合初學與練習。</span></p>
+<table data-path-to-node="12">
+<thead>
+<tr>
+<td><strong>特性</strong></td>
+<td><strong>Webots (ODE)</strong></td>
+<td><strong>NVIDIA Isaac Sim (PhysX)</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span data-path-to-node="12,1,0,0"><b>主要數學模型</b></span></td>
+<td><span data-path-to-node="12,1,1,0">常微分方程 (ODE) 數值求解</span></td>
+<td><span data-path-to-node="12,1,2,0">剛體動力學方程 LCP 求解器</span></td>
+</tr>
+<tr>
+<td><span data-path-to-node="12,2,0,0"><b>核心求解器</b></span></td>
+<td><span data-path-to-node="12,2,1,0">迭代或矩陣分解法 (如 PGS)</span></td>
+<td><span data-path-to-node="12,2,2,0">高度優化的 Sequential Impulse/Iterative Projection</span></td>
+</tr>
+<tr>
+<td><span data-path-to-node="12,3,0,0"><b>關鍵優勢</b></span></td>
+<td><span data-path-to-node="12,3,1,0">成熟、開源、通用性高</span></td>
+<td><span data-path-to-node="12,3,2,0"><b>GPU 加速</b>、高保真度、處理大量物體穩定</span></td>
+</tr>
+<tr>
+<td><span data-path-to-node="12,4,0,0"><b>計算方式</b></span></td>
+<td><span data-path-to-node="12,4,1,0">主要依賴 <b>CPU</b></span></td>
+<td><span data-path-to-node="12,4,2,0">主要依賴 <b>GPU</b> (CUDA) 進行並行計算</span></td>
+</tr>
+</tbody>
+</table>
+<p><span>Q3.如何進行場景模擬？ </span></p>
+<p><span>Q4.如何用 Python 進行控制系統設計？ (</span><a href="https://cyberbotics.com/doc/guide/tutorials">Tutorial</a><span>)</span></p>
+<p></p><h2>W14</h2>
 <h2>W17</h2>
 <h2>W18</h2>
 <h1>Note</h1>
