@@ -409,13 +409,19 @@ git pull origin main –rebase</pre>
 <p>建置出模擬的模型也組裝完成後，也非常清楚知道，就算真的做出實體，也沒有辦法讓他自己走路，反覆思考也認清正因為<span>nvidia</span>是一間大公司，並且擁有足夠的技術，因此</p>
 <p><br/> plotter：</p>
 <p>關鍵字：plotter解說</p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/VOyhUiU_arg?si=9aS9bXAEPlcMSyoz" title="YouTube video player" width="560"></iframe></p><h2>41323142：楊紹凱</h2>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/VOyhUiU_arg?si=9aS9bXAEPlcMSyoz" title="YouTube video player" width="560"></iframe></p>
+<h2>41323142：楊紹凱</h2>
 <h2>41323145：熊有為</h2>
 <p>製作plotter心得:</p>
 <p data-end="72" data-start="0">這次在 Webots 製作 Plotter 的操作流程，主要是在 Scene Tree 逐層把機構「接起來」並讓控制器能「叫得到」裝置。先把場景底板（RectangleArena、背景光源）建好，接著在 Robot 底下依序建立各段 HingeJoint，重點是把 jointParameters 的 <em data-end="172" data-start="166">axis</em>、<em data-end="181" data-start="173">anchor</em>、以及必要的 <em data-end="207" data-start="188">minStop / maxStop</em> 檢查清楚，避免關節方向或支點位置錯誤造成整體幾何跑掉。每個關節的 device 也要確實放入 RotationalMotor，並且把 motor 的 name（如 t1、t2）固定一致，不然控制器用 <code data-end="334" data-start="321">getDevice()</code> 會找不到。連桿端用 endPoint 的 Solid / SolidReference（solidName） 方式把 link 串接，配合 DEF 命名讓結構更好管理、也比較不容易接錯。最後再確認各 Solid 的 translation/rotation、rotationStep，以及 physics（密度、質量設定）與 boundingObject，確保模擬運動比較穩定。</p>
 <p data-end="618" data-start="531">整體心得是：Webots 這類機構作品成功與否，常常不在程式本身，而在 Scene Tree 的命名一致性、關節參數正確性、以及 link 串接關係 是否完全對得上。</p>
 <p data-end="618" data-start="531"></p>
 <p data-end="618" data-start="531">以下為plotter的製作過程影片:</p>
-<p data-end="618" data-start="531"><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/tqRrJdfqI28" width="560"></iframe></p><h2>41323148：鄭宇哲</h2>
+<p data-end="618" data-start="531"><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/tqRrJdfqI28" width="560"></iframe></p>
+<h2>41323148：鄭宇哲</h2>
+<p>plotter製作心得:</p>
+<p>起初完全不懂webot是甚麼，這個軟體怎麼用的情況下，再組裝時可以說是有非常大的問題，後面透過老師的影片，以及上課內容以及自己上網查找，去發掘webot如何應用，再組裝時很麻煩的因該就是節點座標的輸入，每一層 <code data-index-in-node="9" data-path-to-node="6,0,0">jointParameters</code> 中的 <code data-index-in-node="28" data-path-to-node="6,0,0">axis</code> 與 <code data-index-in-node="35" data-path-to-node="6,0,0">anchor</code> 必須與該連桿 <code data-index-in-node="49" data-path-to-node="6,0,0">Solid</code> 的 <code data-index-in-node="57" data-path-to-node="6,0,0">translation</code> 座標完全重合，否則模擬啟動時會因支點偏移產生劇烈抖動，在 <code data-index-in-node="7" data-path-to-node="6,2,0">device</code> 位置裡面加入 <code data-index-in-node="19" data-path-to-node="6,2,0">RotationalMotor</code> 並命名<code data-index-in-node="43" data-path-to-node="6,2,0">t1</code>, <code data-index-in-node="47" data-path-to-node="6,2,0">t2</code>，才能讓controller去透過 <code data-index-in-node="60" data-path-to-node="6,2,0">getDevice()</code> 成功調用馬達，再來利用 <code data-index-in-node="10" data-path-to-node="9,0,0">DEF</code> 為副鏈末端的s<span>olid</span>命名，接著在最末端加入 <code data-index-in-node="48" data-path-to-node="9,0,0">SolidReference</code> 節點並填入該 <span face="monospace" style="font-family: monospace;">link3</span>，讓兩段獨立的運動鏈形成穩定的閉迴路。每個 <code data-index-in-node="9" data-path-to-node="14,0,0">Solid</code> 必須配置<code data-index-in-node="23" data-path-to-node="14,0,0">physics</code>與 <code data-index-in-node="39" data-path-to-node="14,0,0">boundingObject</code>。若連桿間的碰撞體（Bounding Object）重疊，會導致內力衝突，需微調使其略小於視覺模型。</p>
+<p>這次專案讓我學到：Webots 機構模擬的成功，本質上是 <b data-index-in-node="29" data-path-to-node="13">「幾何精確度」</b>、「物理約束力」<b data-index-in-node="46" data-path-to-node="13">與</b>「程式邏輯」三者的交集。如果 Scene Tree 的參數錯誤，再完美的 Python 代碼也無法驅動</p>
+<p>以上是我的心得。</p>
 <h2>41323150：蕭日政</h2>
 <h2>41136123：黃育驊</h2>
